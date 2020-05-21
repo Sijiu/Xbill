@@ -16,7 +16,7 @@ def _read_csv(path, encoding_list=('GBK', 'UTF-8', 'GB18030')) -> Optional[List]
                 return [row for row in reader if row]
 
         except UnicodeDecodeError:
-            print("Not Support This File Encoding!!")
+            print("File not support this encoding!!")
     return None
 
 
