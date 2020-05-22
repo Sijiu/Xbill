@@ -15,9 +15,9 @@ Query OK, 0 rows affected (0.00 sec)
 ```
 
 ## Plan 调整计划
--[x] logging [logging demo](https://www.flyml.net/2018/12/12/flask-logging-usage-demo/)  
--[ ] blueprint  
--[ ] 招行明细, pdf导入支持  
--[ ] 建行明细(→)    
--[ ] 交行明细(↓)  
--[ ] 北行明细(↓)   
+- [x] logging [logging demo](https://www.flyml.net/2018/12/12/flask-logging-usage-demo/)  
+- [ ] blueprint  
+- [ ] 招行明细, pdf导入支持  
+- [ ] 建行明细(→)    
+- [ ] 交行明细(↓)  
+- [ ] 北行明细(↓)   
