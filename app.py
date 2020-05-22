@@ -6,6 +6,9 @@ from werkzeug.utils import secure_filename, redirect
 from Models import create_table, database
 
 from App import api
+import logging
+from logging.handlers import TimedRotatingFileHandler
+
 
 app = Flask(__name__)
 
@@ -106,6 +109,7 @@ def get_category(year, month):
 @app.route("/")
 @app.route("/index")
 def index():
+    app.logger.info("Info message")
     t = api.FinancialDateTime.current_financial_month()
 
     status, columns = to_table(api.account_status_per_month(t.year, t.month))
@@ -266,5 +270,12 @@ if __name__ == "__main__":
     if not os.path.exists(upload_path):
         os.makedirs(upload_path)
     app.config['UPLOAD_FOLDER'] = upload_path
-
+    rotate_handler = TimedRotatingFileHandler("logs/flask.log", when="D", interval=1, backupCount=15,
+                                       encoding="UTF-8", delay=False, utc=True)
+    rotate_handler.suffix = "%Y%m%d"
+    str_format = '%(asctime)s %(levelname)s %(funcName)s Line.%(lineno)d: %(message)s'
+    log_format = logging.Formatter(str_format)
+    rotate_handler.setFormatter(log_format)
+    app.logger.addHandler(rotate_handler)
+    app.logger.setLevel(logging.DEBUG)
     app.run(debug=True)
